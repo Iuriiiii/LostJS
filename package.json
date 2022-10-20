@@ -9,6 +9,10 @@
     "build:test": "npm run build:common && tsc --project tsconfig.json && jest",
     "test": "jest"
   },
+  "repository": {
+    "url": "git+https://github.com/Iuriiiii/LostJS.git",
+    "type": "git"
+  },
   "keywords": ["JavaScript", "TypeScript", "LostJS"],
   "author": "Iuriiiii",
   "license": "MIT",
