@@ -63,7 +63,7 @@ In general, the method's name are very clear but, just in case, i wrote docs for
 
 ### for Array
 
-#### Array.circle
+#### Array.prototype.circle
 
 Converts an array to a circular object reference, usefull for carousels.
 
@@ -101,7 +101,7 @@ console.log(circle.prev.value); // 3
 console.log(circle.prev.index); // 2
 ```
 
-#### Array.at2
+#### Array.prototype.at2
 
 Get a value by an index, like `Array.at` but it's circular.
 
@@ -110,7 +110,7 @@ Get a value by an index, like `Array.at` but it's circular.
 * ✅ if the array isn't empty: the value at the index.
 * ❌ If the array is empty: undefined.
 
-#### Array.isEmpty
+#### Array.prototype.isEmpty
 
 Verify if the array is empty.
 
@@ -119,7 +119,7 @@ Verify if the array is empty.
 * ✅ if the array isn't empty: true.
 * ❌ If the array is empty: false.
 
-#### Array.lastIndex
+#### Array.prototype.lastIndex
 
 Get the index of the last element, equivalent to `Array.length - 1`.
 
@@ -128,7 +128,7 @@ Get the index of the last element, equivalent to `Array.length - 1`.
 * ✅ if the array isn't empty: `Array.length - 1`.
 * ❌ If the array is empty: 0.
 
-#### Array.random
+#### Array.prototype.random
 
 Get a random element from the array.
 
@@ -139,7 +139,7 @@ Get a random element from the array.
 
 ### for Number
 
-#### Number.hasDecimals
+#### Number.prototype.hasDecimals
 
 Verify if a number has decimals.
 
@@ -148,7 +148,7 @@ Verify if a number has decimals.
 * ✅ if the number has decimals: true.
 * ❌ If the number hasn't decimals: false.
 
-#### Number.isBetween
+#### Number.prototype.isBetween
 
 Verify if a number is between the range.
 
@@ -157,7 +157,7 @@ Verify if a number is between the range.
 * ✅ if the number is between the range: true.
 * ❌ If the number is not between the range: false.
 
-#### Number.close
+#### Number.prototype.close
 
 Closes the number between a range.
 

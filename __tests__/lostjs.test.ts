@@ -85,6 +85,15 @@ describe('Array tests', () => {
 });
 
 describe('Number tests', () => {
+    test('Number.random should be ok', () => {
+        for (let i = 0; i < 1000; i++) {
+            expect(Number.random({ min: 1, max: 2 })).toBeGreaterThanOrEqual(1);
+            expect(Number.random({ min: 1, max: 2 })).toBeLessThanOrEqual(2);
+            expect(Math.floor(Number.random({ min: 1, max: 2 }))).toBeGreaterThanOrEqual(1);
+            expect(Math.floor(Number.random({ min: 1, max: 2 }))).toBeLessThanOrEqual(2);
+        }
+    });
+
     test('isBetween should return true', () => {
         expect((50).isBetween(40, 60)).toBeTruthy();
     });

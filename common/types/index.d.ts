@@ -19,4 +19,10 @@ declare global {
         hasDecimals(): boolean;
         close(min: number, max: number): Number;
     }
+    interface NumberConstructor {
+        random(param: {
+            min?: number;
+            max?: number;
+        }): number;
+    }
 }

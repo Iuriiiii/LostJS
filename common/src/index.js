@@ -34,4 +34,6 @@ if (!Number.prototype.hasDecimals)
     Number.prototype.hasDecimals = number_1.hasDecimals;
 if (!Number.prototype.isBetween)
     Number.prototype.isBetween = number_1.isBetween;
+if (!Number.random)
+    Number.random = number_1.staticRandom;
 //# sourceMappingURL=index.js.map
