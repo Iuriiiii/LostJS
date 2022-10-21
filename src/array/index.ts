@@ -31,10 +31,10 @@ export function circleFrom<T>(this: Array<T>): ICircleElement<T> | null {
     return first;
 };
 
-export function random<T>(this: Array<T>): T {
+export function random<T>(this: Array<T>): T | undefined {
     return this[Math.floor(Math.random() * this.length)];
 };
 
-export function at2<T>(this: Array<T>, index: number): T {
-    return this[index % this.length];
+export function at2<T>(this: Array<T>, index: number): T | undefined {
+    return this.at(index % this.length);
 }

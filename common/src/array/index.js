@@ -35,7 +35,7 @@ function random() {
 exports.random = random;
 ;
 function at2(index) {
-    return this[index % this.length];
+    return this.at(index % this.length);
 }
 exports.at2 = at2;
 //# sourceMappingURL=index.js.map

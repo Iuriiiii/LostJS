@@ -28,6 +28,6 @@ export function random() {
 }
 ;
 export function at2(index) {
-    return this[index % this.length];
+    return this.at(index % this.length);
 }
 //# sourceMappingURL=index.js.map
