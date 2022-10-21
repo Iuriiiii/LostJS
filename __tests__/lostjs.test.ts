@@ -22,6 +22,20 @@ describe('Array tests', () => {
         expect([1, 2, 3, 4, 5].lastIndex()).toBe(4);
     })
 
+    test('at2 should work correctly', () => {
+        const array = [1, 2, 3, 4, 5];
+
+        expect([].at2(0)).toBe(undefined);
+        expect(array.at2(0)).toBe(1);
+        expect(array.at2(1)).toBe(2);
+        expect(array.at2(2)).toBe(3);
+        expect(array.at2(3)).toBe(4);
+        expect(array.at2(4)).toBe(5);
+        expect(array.at2(5)).toBe(1);
+        expect(array.at2(6)).toBe(2);
+        expect(array.at2(7)).toBe(3);
+    })
+
     test('random should be greater than 0 and less than 6', () => {
         expect([1, 2, 3, 4, 5].random()).toBeGreaterThanOrEqual(1);
         expect([1, 2, 3, 4, 5].random()).toBeGreaterThanOrEqual(1);

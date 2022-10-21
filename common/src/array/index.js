@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.random = exports.circleFrom = exports.isEmpty = exports.lastIndex = void 0;
+exports.at2 = exports.random = exports.circleFrom = exports.isEmpty = exports.lastIndex = void 0;
 function lastIndex() {
     return this.length === 0 ? 0 : this.length - 1;
 }
@@ -34,4 +34,8 @@ function random() {
 }
 exports.random = random;
 ;
+function at2(index) {
+    return this[index % this.length];
+}
+exports.at2 = at2;
 //# sourceMappingURL=index.js.map

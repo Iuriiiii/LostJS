@@ -1,5 +1,5 @@
 /* @ts-nocheck */
-import { circleFrom, isEmpty, lastIndex, random } from './array';
+import { circleFrom, isEmpty, lastIndex, random, at2 } from './array';
 import { close, hasDecimals, isBetween } from './number';
 export * from '../types';
 
@@ -14,6 +14,9 @@ if (!Array.prototype.lastIndex)
 
 if (!Array.prototype.random)
     Array.prototype.random = random;
+
+if (!Array.prototype.at2)
+    Array.prototype.at2 = at2;
 
 if (!Number.prototype.close)
     Number.prototype.close = close;

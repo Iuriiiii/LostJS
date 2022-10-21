@@ -101,6 +101,15 @@ console.log(circle.prev.value); // 3
 console.log(circle.prev.index); // 2
 ```
 
+#### Array.at2
+
+Get a value by an index, like `Array.at` but it's circular.
+
+##### Return
+
+* ✅ if the array isn't empty: the value at the index.
+* ❌ If the array is empty: undefined.
+
 #### Array.isEmpty
 
 Verify if the array is empty.

@@ -12,7 +12,8 @@ declare global {
         lastIndex(): number,
         isEmpty(): boolean,
         circle(): ICircleElement<T> | null,
-        random(): T
+        random(): T,
+        at2(index: number): T
     }
 
     interface Number {

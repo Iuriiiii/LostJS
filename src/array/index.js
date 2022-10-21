@@ -27,4 +27,7 @@ export function random() {
     return this[Math.floor(Math.random() * this.length)];
 }
 ;
+export function at2(index) {
+    return this[index % this.length];
+}
 //# sourceMappingURL=index.js.map

@@ -35,3 +35,6 @@ export function random<T>(this: Array<T>): T {
     return this[Math.floor(Math.random() * this.length)];
 };
 
+export function at2<T>(this: Array<T>, index: number): T {
+    return this[index % this.length];
+}

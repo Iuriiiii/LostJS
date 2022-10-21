@@ -12,6 +12,7 @@ declare global {
         isEmpty(): boolean;
         circle(): ICircleElement<T> | null;
         random(): T;
+        at2(index: number): T;
     }
     interface Number {
         isBetween(min: number, max: number): boolean;

@@ -26,6 +26,8 @@ if (!Array.prototype.lastIndex)
     Array.prototype.lastIndex = array_1.lastIndex;
 if (!Array.prototype.random)
     Array.prototype.random = array_1.random;
+if (!Array.prototype.at2)
+    Array.prototype.at2 = array_1.at2;
 if (!Number.prototype.close)
     Number.prototype.close = number_1.close;
 if (!Number.prototype.hasDecimals)
