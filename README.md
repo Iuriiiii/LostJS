@@ -170,3 +170,15 @@ Closes the number between a range.
 
 * ✅ A number between the `min` and `max`.
 
+#### Number.random
+
+Get a random number between a range.
+
+##### Params
+
+* 🔹 `param: {min?: number = 0, max?: number = Number.MAX_SAFE_INTEGER}` - An object that defines the min and max range.
+
+##### Return
+
+* ✅ A number between the `min` and `max`.
+
