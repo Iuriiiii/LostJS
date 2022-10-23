@@ -82,6 +82,35 @@ describe('Array tests', () => {
         expect(circle?.next?.next.next.next.next.isFirst).toBe(true);
     })
 
+    test('fillWith should work correctly', () => {
+        const array = [].fillWith((index) => ({ continue: index < 9, value: index }));
+        const array2 = [].fillWith((index) => ({ continue: index < 9, value: 's' }));
+
+        expect(array.length).toBe(10);
+
+        for (let i = 0; i < array.length; i++)
+            expect(array[i]).toBe(i);
+
+        expect(array2.length).toBe(10);
+
+        for (let i = 0; i < array2.length; i++)
+            expect(array2[i]).toBe('s');
+    });
+
+    test('rotate should work correctly', () => {
+        const array = [1, 2, 3];
+
+        expect(array.rotate(1)).toMatchObject([3, 1, 2]);
+        expect(array.rotate(-1)).toMatchObject([2, 3, 1]);
+
+        const array2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+
+        expect(array2.rotate(2)).toMatchObject(['i', 'j', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
+        expect(array2.rotate(-1)).toMatchObject(['b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'a']);
+        const res = array2.rotate(1, (item, index) => index % 2 === 0);
+
+        expect(res).toMatchObject(['i', 'b', 'a', 'd', 'c', 'f', 'e', 'h', 'g', 'j']);
+});
 });
 
 describe('Number tests', () => {
@@ -125,4 +154,29 @@ describe('Number tests', () => {
     test('hasDecimals should return true', () => {
         expect((100).hasDecimals()).toBe(false);
     });
+});
+
+describe('Object tests', () => {
+    test('defaults should work corretly', () => {
+        const obj = { a: true, d: 1 };
+
+        expect(obj.defaults({ b: true }).b).toBe(true);
+        expect(obj.defaults({ b: true }).a).toBe(true);
+        expect(obj.defaults({ b: true }).d).toBe(1);
+        /* @ts-ignore */
+        expect(obj.defaults({ b: true }).c).toBe(undefined);
+        expect(obj.defaults({ d: 2 }).d).toBe(1);
+
+    });
+
+    test('predetermines should work corretly', () => {
+        const obj = { a: true, d: 1 };
+
+        expect({ b: true }.predetermines(obj).b).toBe(true);
+        expect({ b: true }.predetermines(obj).a).toBe(true);
+        expect({ b: true }.predetermines(obj).d).toBe(1);
+        /* @ts-ignore */
+        expect({ b: true }.predetermines(obj).c).toBe(undefined);
+        expect({ d: 2 }.predetermines(obj).d).toBe(1);
+    })
 });

@@ -100,8 +100,9 @@ console.log(circle.next.index); // 1
 console.log(circle.prev.value); // 3
 console.log(circle.prev.index); // 2
 ```
+
 ***
-#### Array.prototype.at2
+#### Array.prototype.at2 ❗ DEPRECATED
 
 Get a value by an index, like `Array.at` but it's circular.
 
@@ -109,6 +110,58 @@ Get a value by an index, like `Array.at` but it's circular.
 
 * ✅ if the array isn't empty: the value at the index.
 * ❌ If the array is empty: undefined.
+
+***
+#### Array.prototype.from
+
+Get a value by an index, like `Array.at` but it's circular.
+
+##### Return
+
+* ✅ if the array isn't empty: the value at the index.
+* ❌ If the array is empty: undefined.
+
+***
+#### Array.prototype.rotate
+
+Rotate the array.
+
+##### Params
+
+* 🔹 `steps: number` - The amount of steps to rotate, to right if positive, left if negative.
+* 🔹 `selector: (item, index, array) => boolean` - A function that works as selector, should return true if the item might be rotated.
+
+##### Return
+
+* ✅ A new array with rotated elements.
+* ❌ An empty array if steps is zero or the referenced array is empty.
+
+#### Array.prototype.fillWith
+
+Fills an array with values.
+
+##### Params
+
+* 🔹 `filler: (index, array) => {continue: boolean, push?: boolean, value: any}` - The function that returns the fill data.
+
+> The `filler` function should return an object  with the action to realize in the fill's instance.
+If the `continue` member is true, the filling will continue.
+If `push` is true or undefined, the value will be pushed in the array, ignored otherwise.
+`value` will be the value with which the array will be filled, can be changed in the time.
+
+##### Return
+
+* ✅ A new filled array.
+* ❌ An empty array.
+
+##### Example
+
+```ts
+[].fillWith((index) => ({continue: index < 9, push: index !== 5, value: index*2}));
+/*
+[0,  2,  4,  6, 8, 12, 14, 16, 18]
+*/
+```
 
 ***
 #### Array.prototype.isEmpty

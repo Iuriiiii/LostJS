@@ -1,14 +1,14 @@
-import { ICircleElement } from '../../types';
+import { ICircleElement, TDefaultObject, TFillerResult } from '../../types';
 
-export function lastIndex<T>(this: Array<T>) {
+export function lastIndex<T>(this: T[]) {
     return this.length === 0 ? 0 : this.length - 1;
 }
 
-export function isEmpty<T>(this: Array<T>): boolean {
+export function isEmpty<T>(this: T[]): boolean {
     return this.length === 0;
 }
 
-export function circleFrom<T>(this: Array<T>): ICircleElement<T> | null {
+export function circleFrom<T>(this: T[]): ICircleElement<T> | null {
     if (this.isEmpty())
         return null;
 
@@ -31,10 +31,54 @@ export function circleFrom<T>(this: Array<T>): ICircleElement<T> | null {
     return first;
 };
 
-export function random<T>(this: Array<T>): T | undefined {
+export function random<T>(this: T[]): T | undefined {
     return this[Math.floor(Math.random() * this.length)];
 };
 
-export function at2<T>(this: Array<T>, index: number): T | undefined {
+/**
+ * @deprecated
+ * @param this 
+ * @param index 
+ * @returns The element in the position or undefinded if the array is empty.
+ */
+export function at2<T>(this: T[], index: number): T | undefined {
     return this.at(index % this.length);
+}
+
+export function from<T>(this: T[], index: number): T | undefined {
+    return this.at(index % this.length);
+}
+
+export function fillWith<T>(this: T[], filler: (index: number, array: T[]) => TFillerResult): T[] {
+    let i = 0, filleResult;
+
+    do {
+        filleResult = { push: true }.predetermines(filler(i++, this));
+
+        if (filleResult.push)
+            this.push(filleResult.value);
+
+    } while (filleResult.continue);
+
+    return this;
+}
+
+export function rotate<T>(this: T[], steps: number = 1, selector?: (item: T, index: number, array: T[]) => boolean): T[] {
+    if (steps === 0 || this.isEmpty())
+        return [];
+
+    const toRight = steps > 0 ? -1 : 1;
+    const modificableIndexes: Array<number> =
+        selector
+            ? this.reduce<number[]>((accumulator, value, index, array) => selector(value, index, array) ? accumulator.concat(index) : accumulator, [])
+            : [].fillWith((index) => ({ continue: index < this.lastIndex(), value: index }));
+    const res: T[] = [];
+
+    for (let i = 0, k = 0; i < this.length; i++)
+        if (modificableIndexes.includes(i))
+            res.push(this.from(modificableIndexes.from(toRight ? (k++ + -steps) : k++ + steps)));
+        else
+            res.push(this[i]);
+
+    return res;
 }
