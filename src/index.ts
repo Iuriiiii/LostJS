@@ -40,8 +40,8 @@ if (!Number.prototype.isBetween)
 if (!Number.random)
     Number.random = staticRandom;
 
-if (!Object.defaults)
-    Object.prototype.defaults = defaults;
+// if (!Object.defaults)
+//     Object.prototype.defaults = defaults;
 
-if (!Object.predetermines)
-    Object.prototype.predetermines = predetermines; 
+// if (!Object.predetermines)
+//     Object.prototype.predetermines = predetermines; 
