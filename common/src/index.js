@@ -17,7 +17,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* @ts-nocheck */
 const array_1 = require("./array");
 const number_1 = require("./number");
-const object_1 = require("./object");
 __exportStar(require("../types"), exports);
 if (!Array.prototype.circle)
     Array.prototype.circle = array_1.circleFrom;
@@ -43,8 +42,8 @@ if (!Number.prototype.isBetween)
     Number.prototype.isBetween = number_1.isBetween;
 if (!Number.random)
     Number.random = number_1.staticRandom;
-if (!Object.defaults)
-    Object.prototype.defaults = object_1.defaults;
-if (!Object.predetermines)
-    Object.prototype.predetermines = object_1.predetermines;
+// if (!Object.defaults)
+//     Object.prototype.defaults = defaults;
+// if (!Object.predetermines)
+//     Object.prototype.predetermines = predetermines; 
 //# sourceMappingURL=index.js.map

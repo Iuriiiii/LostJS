@@ -1,7 +1,6 @@
 /* @ts-nocheck */
 import { circleFrom, isEmpty, lastIndex, random, at2, fillWith, from, rotate } from './array';
 import { close, hasDecimals, isBetween, staticRandom } from './number';
-import { defaults, predetermines } from './object';
 export * from '../types';
 if (!Array.prototype.circle)
     Array.prototype.circle = circleFrom;
@@ -27,8 +26,8 @@ if (!Number.prototype.isBetween)
     Number.prototype.isBetween = isBetween;
 if (!Number.random)
     Number.random = staticRandom;
-if (!Object.defaults)
-    Object.prototype.defaults = defaults;
-if (!Object.predetermines)
-    Object.prototype.predetermines = predetermines;
+// if (!Object.defaults)
+//     Object.prototype.defaults = defaults;
+// if (!Object.predetermines)
+//     Object.prototype.predetermines = predetermines; 
 //# sourceMappingURL=index.js.map

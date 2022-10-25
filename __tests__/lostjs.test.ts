@@ -156,27 +156,27 @@ describe('Number tests', () => {
     });
 });
 
-describe('Object tests', () => {
-    test('defaults should work corretly', () => {
-        const obj = { a: true, d: 1 };
+// describe('Object tests', () => {
+//     test('defaults should work corretly', () => {
+//         const obj = { a: true, d: 1 };
 
-        expect(obj.defaults({ b: true }).b).toBe(true);
-        expect(obj.defaults({ b: true }).a).toBe(true);
-        expect(obj.defaults({ b: true }).d).toBe(1);
-        /* @ts-ignore */
-        expect(obj.defaults({ b: true }).c).toBe(undefined);
-        expect(obj.defaults({ d: 2 }).d).toBe(1);
+//         expect(obj.defaults({ b: true }).b).toBe(true);
+//         expect(obj.defaults({ b: true }).a).toBe(true);
+//         expect(obj.defaults({ b: true }).d).toBe(1);
+//         /* @ts-ignore */
+//         expect(obj.defaults({ b: true }).c).toBe(undefined);
+//         expect(obj.defaults({ d: 2 }).d).toBe(1);
 
-    });
+//     });
 
-    test('predetermines should work corretly', () => {
-        const obj = { a: true, d: 1 };
+//     test('predetermines should work corretly', () => {
+//         const obj = { a: true, d: 1 };
 
-        expect({ b: true }.predetermines(obj).b).toBe(true);
-        expect({ b: true }.predetermines(obj).a).toBe(true);
-        expect({ b: true }.predetermines(obj).d).toBe(1);
-        /* @ts-ignore */
-        expect({ b: true }.predetermines(obj).c).toBe(undefined);
-        expect({ d: 2 }.predetermines(obj).d).toBe(1);
-    })
-});
+//         expect({ b: true }.predetermines(obj).b).toBe(true);
+//         expect({ b: true }.predetermines(obj).a).toBe(true);
+//         expect({ b: true }.predetermines(obj).d).toBe(1);
+//         /* @ts-ignore */
+//         expect({ b: true }.predetermines(obj).c).toBe(undefined);
+//         expect({ d: 2 }.predetermines(obj).d).toBe(1);
+//     })
+// });

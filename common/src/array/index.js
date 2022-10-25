@@ -51,7 +51,7 @@ exports.from = from;
 function fillWith(filler) {
     let i = 0, filleResult;
     do {
-        filleResult = { push: true }.predetermines(filler(i++, this));
+        filleResult = { push: true, ...filler(i++, this) };
         if (filleResult.push)
             this.push(filleResult.value);
     } while (filleResult.continue);
