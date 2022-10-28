@@ -82,3 +82,18 @@ export function rotate<T>(this: T[], steps: number = 1, selector?: (item: T, ind
 
     return res;
 }
+
+export function split<T>(this: T[], steps: number, byDivision: boolean = false): T[][] {
+    if (steps < 0)
+        return [];
+    else if (steps === 0 || this.isEmpty())
+        return [this];
+
+    const numSections = byDivision ? Math.floor(this.length / steps) : steps;
+    const res = [];
+
+    for (let i = 0; i < this.length; i += numSections)
+        res.push(this.slice(i, i + numSections));
+
+    return res;
+}

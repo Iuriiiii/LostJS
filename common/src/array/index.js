@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rotate = exports.fillWith = exports.from = exports.at2 = exports.random = exports.circleFrom = exports.isEmpty = exports.lastIndex = void 0;
+exports.split = exports.rotate = exports.fillWith = exports.from = exports.at2 = exports.random = exports.circleFrom = exports.isEmpty = exports.lastIndex = void 0;
 function lastIndex() {
     return this.length === 0 ? 0 : this.length - 1;
 }
@@ -74,4 +74,16 @@ function rotate(steps = 1, selector) {
     return res;
 }
 exports.rotate = rotate;
+function split(steps, byDivision = false) {
+    if (steps < 0)
+        return [];
+    else if (steps === 0 || this.isEmpty())
+        return [this];
+    const numSections = byDivision ? Math.floor(this.length / steps) : steps;
+    const res = [];
+    for (let i = 0; i < this.length; i += numSections)
+        res.push(this.slice(i, i + numSections));
+    return res;
+}
+exports.split = split;
 //# sourceMappingURL=index.js.map

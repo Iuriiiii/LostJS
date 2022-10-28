@@ -1,8 +1,8 @@
 {
   "name": "lostjs",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "An usefull library to improve your projects",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
     "build:common": "tsc --project tsconfig.common.json",
     "build": "npm run build:common && tsc --project tsconfig.json",
@@ -13,7 +13,11 @@
     "url": "git+https://github.com/Iuriiiii/LostJS.git",
     "type": "git"
   },
-  "keywords": ["JavaScript", "TypeScript", "LostJS"],
+  "keywords": [
+    "JavaScript",
+    "TypeScript",
+    "LostJS"
+  ],
   "author": "Iuriiiii",
   "license": "MIT",
   "devDependencies": {

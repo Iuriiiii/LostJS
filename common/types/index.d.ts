@@ -28,6 +28,7 @@ declare global {
         from(index: number): T;
         fillWith(filler: (index: number, array: T[]) => TFillerResult): T[];
         rotate<T>(this: T[], steps: number, selector?: (item: T, index: number, array: T[]) => boolean): T[];
+        split<T>(this: T[], steps: number, byDivision?: boolean): T[][];
     }
     interface Number {
         isBetween(min: number, max: number): boolean;

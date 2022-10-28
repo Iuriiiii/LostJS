@@ -110,7 +110,18 @@ describe('Array tests', () => {
         const res = array2.rotate(1, (item, index) => index % 2 === 0);
 
         expect(res).toMatchObject(['i', 'b', 'a', 'd', 'c', 'f', 'e', 'h', 'g', 'j']);
-});
+    });
+
+    describe('split should work correctly', () => {
+        const array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+        expect(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'].split(2)).toMatchObject([['a', 'b'], ['c', 'd'], ['e', 'f'], ['g', 'h'], ['i']]);
+        expect(array.split(2)).toMatchObject([['a', 'b'], ['c', 'd'], ['e', 'f'], ['g', 'h'], ['i', 'j']]);
+        expect(array.split(2, true)).toMatchObject([['a', 'b', 'c', 'd', 'e'], ['f', 'g', 'h', 'i', 'j']]);
+        expect(array.split(0)).toMatchObject([['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']]);
+        expect(array.split(-1)).toMatchObject([]);
+        expect(array.split(array.length)).toMatchObject([['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']]);
+
+    });
 });
 
 describe('Number tests', () => {

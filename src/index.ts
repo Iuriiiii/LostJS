@@ -1,5 +1,5 @@
 /* @ts-nocheck */
-import { circleFrom, isEmpty, lastIndex, random, at2, fillWith, from, rotate } from './array';
+import { circleFrom, isEmpty, lastIndex, random, at2, fillWith, from, rotate, split } from './array';
 import { close, hasDecimals, isBetween, staticRandom } from './number';
 import { defaults, predetermines } from './object';
 export * from '../types';
@@ -27,6 +27,9 @@ if (!Array.prototype.rotate)
 
 if (!Array.prototype.fillWith)
     Array.prototype.fillWith = fillWith;
+
+if (!Array.prototype.split)
+    Array.prototype.split = split;
 
 if (!Number.prototype.close)
     Number.prototype.close = close;

@@ -63,4 +63,15 @@ export function rotate(steps = 1, selector) {
             res.push(this[i]);
     return res;
 }
+export function split(steps, byDivision = false) {
+    if (steps < 0)
+        return [];
+    else if (steps === 0 || this.isEmpty())
+        return [this];
+    const numSections = byDivision ? Math.floor(this.length / steps) : steps;
+    const res = [];
+    for (let i = 0; i < this.length; i += numSections)
+        res.push(this.slice(i, i + numSections));
+    return res;
+}
 //# sourceMappingURL=index.js.map

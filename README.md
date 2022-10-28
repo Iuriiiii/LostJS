@@ -162,6 +162,34 @@ If `push` is true or undefined, the value will be pushed in the array, ignored o
 [0,  2,  4,  6, 8, 12, 14, 16, 18]
 */
 ```
+***
+
+#### Array.prototype.split
+
+Splits an array.
+
+##### Params
+
+* 🔹 `steps: number` - The amount of item to each array element.
+* 🔹 `byDivide: boolean = false` - Use the divide metodology.
+
+##### Return
+
+* ✅ A new array of arrays with the elements of the main array.
+
+##### Example
+
+```ts
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].split(2);
+/*
+[[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
+*/
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].split(2, true);
+/*
+[[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]]
+*/
+```
 
 ***
 #### Array.prototype.isEmpty

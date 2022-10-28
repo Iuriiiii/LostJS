@@ -13,3 +13,4 @@ export declare function at2<T>(this: T[], index: number): T | undefined;
 export declare function from<T>(this: T[], index: number): T | undefined;
 export declare function fillWith<T>(this: T[], filler: (index: number, array: T[]) => TFillerResult): T[];
 export declare function rotate<T>(this: T[], steps?: number, selector?: (item: T, index: number, array: T[]) => boolean): T[];
+export declare function split<T>(this: T[], steps: number, byDivision?: boolean): T[][];

@@ -27,7 +27,8 @@ declare global {
         at2(index: number): T,
         from(index: number): T,
         fillWith(filler: (index: number, array: T[]) => TFillerResult): T[],
-        rotate<T>(this: T[], steps: number, selector?: (item: T, index: number, array: T[]) => boolean): T[]
+        rotate<T>(this: T[], steps: number, selector?: (item: T, index: number, array: T[]) => boolean): T[],
+        split<T>(this: T[], steps: number, byDivision?: boolean): T[][]
     }
 
     interface Number {
