@@ -198,8 +198,8 @@ Verify if the array is empty.
 
 ##### Return
 
-* ✅ if the array isn't empty: true.
-* ❌ If the array is empty: false.
+* ✅ if the array is empty: true.
+* ❌ If the array isn't empty: false.
 
 ***
 #### Array.prototype.lastIndex
