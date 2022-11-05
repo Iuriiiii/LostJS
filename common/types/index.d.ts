@@ -34,6 +34,7 @@ declare global {
         isBetween(min: number, max: number): boolean;
         hasDecimals(): boolean;
         close(min: number, max: number): Number;
+        times(this: Number, cb: (...args: any) => void, ...args: any): void;
     }
     interface Object {
         defaults<T extends Object, K>(this: T, defs: K): TDefaultObject<T, K>;

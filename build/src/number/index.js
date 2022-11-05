@@ -17,4 +17,10 @@ export function staticRandom(param) {
     param.max = param.max || Number.MAX_SAFE_INTEGER;
     return Math.random() * (param.max - 1) + param.min;
 }
+export function times(cb, ...args) {
+    if (this <= 0)
+        return;
+    for (let i = 0; i < this; i++)
+        cb(...args.map((arg) => arg === '$' ? i : arg));
+}
 //# sourceMappingURL=index.js.map

@@ -5,3 +5,4 @@ export declare function staticRandom(param: {
     min?: number;
     max?: number;
 }): number;
+export declare function times(this: Number, cb: (...args: any) => void, ...args: any): void;

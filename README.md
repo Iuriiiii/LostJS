@@ -228,10 +228,52 @@ Get a random element from the array.
 
 Verify if a number has decimals.
 
+
 ##### Return
 
 * ✅ if the number has decimals: true.
 * ❌ If the number hasn't decimals: false.
+
+***
+#### Number.prototype.times
+
+Calls a function `n` times.
+
+##### Params
+
+* 🔹 `cb: (...args: any) => void` - The callback that will be executed `n` times.
+* 🔹 `...args: any` - The arguments that will be passed to the callback.
+
+> If you pass '$' to the arguments, the counter will be passed to the callback.
+
+##### Example
+
+```ts
+(5).times(console.log, 'Hola Mundo');
+/*
+Hola Mundo
+Hola Mundo
+Hola Mundo
+Hola Mundo
+Hola Mundo
+*/
+
+(5).times(console.log, 'Hola Mundo', '$');
+/*
+Hola Mundo 0
+Hola Mundo 1
+Hola Mundo 2
+Hola Mundo 3
+Hola Mundo 4
+*/
+
+let i = 0;
+
+(5).times(() => i++);
+/*
+i = 5;
+*/
+```
 
 ***
 #### Number.prototype.isBetween

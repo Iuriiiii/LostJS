@@ -1,6 +1,6 @@
 /* @ts-nocheck */
 import { circleFrom, isEmpty, lastIndex, random, at2, fillWith, from, rotate, split } from './array';
-import { close, hasDecimals, isBetween, staticRandom } from './number';
+import { close, hasDecimals, isBetween, staticRandom, times } from './number';
 export * from '../types';
 if (!Array.prototype.circle)
     Array.prototype.circle = circleFrom;
@@ -26,6 +26,8 @@ if (!Number.prototype.hasDecimals)
     Number.prototype.hasDecimals = hasDecimals;
 if (!Number.prototype.isBetween)
     Number.prototype.isBetween = isBetween;
+if (!Number.prototype.times)
+    Number.prototype.times = times;
 if (!Number.random)
     Number.random = staticRandom;
 // if (!Object.defaults)

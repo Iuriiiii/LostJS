@@ -42,6 +42,8 @@ if (!Number.prototype.hasDecimals)
     Number.prototype.hasDecimals = number_1.hasDecimals;
 if (!Number.prototype.isBetween)
     Number.prototype.isBetween = number_1.isBetween;
+if (!Number.prototype.times)
+    Number.prototype.times = number_1.times;
 if (!Number.random)
     Number.random = number_1.staticRandom;
 // if (!Object.defaults)

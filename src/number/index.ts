@@ -24,3 +24,11 @@ export function staticRandom(param: { min?: number, max?: number }): number {
 
     return Math.random() * (param.max - 1) + param.min;
 }
+
+export function times(this: Number, cb: (...args: any) => void, ...args: any): void {
+    if (this <= 0)
+        return;
+
+    for (let i = 0; i < this; i++)
+        cb(...args.map((arg: any) => arg === '$' ? i : arg));
+}

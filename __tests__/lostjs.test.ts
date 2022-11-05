@@ -165,6 +165,18 @@ describe('Number tests', () => {
     test('hasDecimals should return true', () => {
         expect((100).hasDecimals()).toBe(false);
     });
+
+    test('times should work correctly', () => {
+        let i = 0;
+        let s = '';
+
+        (3).times(() => i++);
+        (5).times((i: number) => s += i, '$');
+
+        expect(i).toBe(3);
+        expect(s).toBe('01234');
+    });
+
 });
 
 // describe('Object tests', () => {

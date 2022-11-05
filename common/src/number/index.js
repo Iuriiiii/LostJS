@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.staticRandom = exports.close = exports.isBetween = exports.hasDecimals = void 0;
+exports.times = exports.staticRandom = exports.close = exports.isBetween = exports.hasDecimals = void 0;
 function hasDecimals() {
     /* @ts-ignore */
     return this % 1 > 0;
@@ -24,4 +24,11 @@ function staticRandom(param) {
     return Math.random() * (param.max - 1) + param.min;
 }
 exports.staticRandom = staticRandom;
+function times(cb, ...args) {
+    if (this <= 0)
+        return;
+    for (let i = 0; i < this; i++)
+        cb(...args.map((arg) => arg === '$' ? i : arg));
+}
+exports.times = times;
 //# sourceMappingURL=index.js.map
