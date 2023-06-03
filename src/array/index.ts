@@ -1,4 +1,4 @@
-import { ICircleElement, TDefaultObject, TFillerResult } from '../../types';
+import { ICircleElement, TFillerResult } from '../../types';
 
 export function lastIndex<T>(this: T[]) {
     return this.length === 0 ? 0 : this.length - 1;
