@@ -1,6 +1,6 @@
 {
   "name": "lostjs",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "An usefull library to improve your projects",
   "main": "./build/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "author": "Iuriiiii",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^29.2.0",
+    "@types/jest": "^29.5.2",
     "jest": "^29.2.1",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
