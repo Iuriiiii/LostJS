@@ -14,10 +14,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/* @ts-nocheck */
 const array_1 = require("./array");
 const number_1 = require("./number");
-__exportStar(require("../types"), exports);
+const object_1 = require("./object");
 if (!Array.prototype.circle)
     Array.prototype.circle = array_1.circleFrom;
 if (!Array.prototype.isEmpty)
@@ -46,8 +45,14 @@ if (!Number.prototype.times)
     Number.prototype.times = number_1.times;
 if (!Number.random)
     Number.random = number_1.staticRandom;
-// if (!Object.defaults)
-//     Object.prototype.defaults = defaults;
-// if (!Object.predetermines)
-//     Object.prototype.predetermines = predetermines; 
+if (!Object.patch)
+    Object.patch = object_1.patch;
+if (!Object.clone)
+    Object.clone = object_1.clone;
+if (!Object.toArray)
+    Object.toArray = object_1.toArray;
+if (!Object.pick)
+    Object.pick = object_1.pick;
+__exportStar(require("./types"), exports);
+__exportStar(require("./interfaces"), exports);
 //# sourceMappingURL=index.js.map
