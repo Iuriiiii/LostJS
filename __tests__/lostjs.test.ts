@@ -242,6 +242,31 @@ describe("Number tests", () => {
 });
 
 describe("Object test", () => {
+  test("clone", () => {
+    const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
+    const copyObject = Object.clone(object);
+
+    expect(typeof copyObject).toBe(typeof object);
+    expect(copyObject).toMatchObject(object);
+    expect(copyObject.a).toBe(true);
+    expect(copyObject.b).toBe(1);
+    expect(copyObject.c).toMatchObject({ a: 1, b: "2", c: [1, 2, 3] });
+
+    expect(object.c === object.c).toBe(true);
+    expect(copyObject.c === object.c).toBe(false);
+    expect(copyObject.c.c === object.c.c).toBe(false);
+  });
+
+  test("toArray", () => {
+    const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
+    const arrayObject = Object.toArray(object);
+
+    expect(arrayObject).toBeInstanceOf(Array);
+    expect(arrayObject["a"]).toBe(true);
+    expect(arrayObject["b"]).toBe(1);
+    expect(arrayObject["c"]).toMatchObject({ a: 1, b: "2", c: [1, 2, 3] });
+  });
+
   test("patch", () => {
     const object = {
       a: true,
@@ -309,31 +334,6 @@ describe("Object test", () => {
       d: "arroz",
       e: null,
     });
-  });
-
-  test("toArray", () => {
-    const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
-    const arrayObject = Object.toArray(object);
-
-    expect(arrayObject).toBeInstanceOf(Array);
-    expect(arrayObject["a"]).toBe(true);
-    expect(arrayObject["b"]).toBe(1);
-    expect(arrayObject["c"]).toMatchObject({ a: 1, b: "2", c: [1, 2, 3] });
-  });
-
-  test("clone", () => {
-    const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
-    const copyObject = Object.clone(object);
-
-    expect(typeof copyObject).toBe(typeof object);
-    expect(copyObject).toMatchObject(object);
-    expect(copyObject.a).toBe(true);
-    expect(copyObject.b).toBe(1);
-    expect(copyObject.c).toMatchObject({ a: 1, b: "2", c: [1, 2, 3] });
-
-    expect(object.c === object.c).toBe(true);
-    expect(copyObject.c === object.c).toBe(false);
-    expect(copyObject.c.c === object.c.c).toBe(false);
   });
 
   test("pick", () => {

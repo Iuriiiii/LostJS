@@ -6,12 +6,12 @@ export function toArray(object) {
     }, []);
 }
 export function clone(object) {
-    if (structuredClone) {
+    if (typeof structuredClone === "function") {
         return structuredClone(object);
     }
     const result = { ...object };
-    for (const [key, value] of Object.entries(result)) {
-        if (typeof value === "object") {
+    for (const [key, value] of Object.entries(object)) {
+        if (typeof value === "object" && value !== null) {
             result[key] = clone(value);
         }
     }

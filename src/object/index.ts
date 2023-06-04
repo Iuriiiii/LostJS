@@ -11,14 +11,14 @@ export function toArray<T extends object>(object: T): Indexable<T> {
 }
 
 export function clone<T extends object>(object: T): T {
-  if (structuredClone) {
+  if (typeof structuredClone === "function") {
     return structuredClone(object);
   }
 
   const result: T = { ...object };
 
-  for (const [key, value] of Object.entries(result)) {
-    if (typeof value === "object") {
+  for (const [key, value] of Object.entries(object)) {
+    if (typeof value === "object" && value !== null) {
       result[key] = clone(value);
     }
   }
