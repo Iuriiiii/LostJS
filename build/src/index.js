@@ -1,8 +1,6 @@
-/* @ts-nocheck */
 import { at2, circleFrom, fillWith, from, isEmpty, lastIndex, random, rotate, split, } from "./array";
 import { close, hasDecimals, isBetween, staticRandom, times } from "./number";
-import { clone, patch, toArray } from "./object";
-export * from "./types";
+import { clone, patch, pick, toArray } from "./object";
 if (!Array.prototype.circle)
     Array.prototype.circle = circleFrom;
 if (!Array.prototype.isEmpty)
@@ -37,8 +35,8 @@ if (!Object.clone)
     Object.clone = clone;
 if (!Object.toArray)
     Object.toArray = toArray;
-// if (!Object.defaults)
-//     Object.prototype.defaults = defaults;
-// if (!Object.predetermines)
-//     Object.prototype.predetermines = predetermines;
+if (!Object.pick)
+    Object.pick = pick;
+export * from "./types";
+export * from "./interfaces";
 //# sourceMappingURL=index.js.map

@@ -1,4 +1,4 @@
-import { Reference } from "../interfaces";
+import { PatchFilterOptions, Reference } from "../interfaces";
 import { DeepPartial, Indexable } from "../types";
 
 export function toArray<T extends object>(object: T): Indexable<T> {
@@ -30,16 +30,10 @@ export function clone<T extends object>(object: T): T {
   return result as T;
 }
 
-/**
- * Set the values of the secondObject to the firstObject.
- *
- * @param firstObject The object to patch.
- * @param secondObject The object with the data to use in as patch.
- * @returns The patched firstObject's clone.
- */
 export function patch<T extends object>(
   firstObject: T,
-  secondObject: DeepPartial<T>
+  secondObject: DeepPartial<T>,
+  filter?: (options: PatchFilterOptions) => boolean
 ): T {
   const entries = Object.entries(firstObject);
   const result: T = clone(firstObject);
@@ -53,8 +47,12 @@ export function patch<T extends object>(
       continue;
     }
 
+    if (filter && !filter({ key, value })) {
+      continue;
+    }
+
     if (typeof value === "object") {
-      result[key] = patch(result[key], secondObject[key]!);
+      result[key] = patch(result[key], secondObject[key]!, filter);
     } else {
       result[key] = secondObject[key];
     }

@@ -1,4 +1,3 @@
-/* @ts-nocheck */
 import {
   at2,
   circleFrom,
@@ -11,8 +10,7 @@ import {
   split,
 } from "./array";
 import { close, hasDecimals, isBetween, staticRandom, times } from "./number";
-import { clone, patch, toArray } from "./object";
-export * from "./types";
+import { clone, patch, pick, toArray } from "./object";
 
 if (!Array.prototype.circle) Array.prototype.circle = circleFrom;
 if (!Array.prototype.isEmpty) Array.prototype.isEmpty = isEmpty;
@@ -28,13 +26,10 @@ if (!Number.prototype.hasDecimals) Number.prototype.hasDecimals = hasDecimals;
 if (!Number.prototype.isBetween) Number.prototype.isBetween = isBetween;
 if (!Number.prototype.times) Number.prototype.times = times;
 if (!Number.random) Number.random = staticRandom;
-
 if (!Object.patch) Object.patch = patch;
 if (!Object.clone) Object.clone = clone;
 if (!Object.toArray) Object.toArray = toArray;
+if (!Object.pick) Object.pick = pick;
 
-// if (!Object.defaults)
-//     Object.prototype.defaults = defaults;
-
-// if (!Object.predetermines)
-//     Object.prototype.predetermines = predetermines;
+export * from "./types";
+export * from "./interfaces";

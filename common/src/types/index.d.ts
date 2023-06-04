@@ -1,5 +1,5 @@
 import { SplitType } from "../enums";
-import { ICircleElement, RotateOptions } from "../interfaces";
+import { ICircleElement, PatchFilterOptions, RotateOptions } from "../interfaces";
 export declare type Indexable<T extends object> = {
     [K in keyof T]: T[K];
 };
@@ -7,7 +7,7 @@ export declare type Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
 export declare type DeepPartial<T extends object> = {
-    [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+    [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P] extends undefined | null ? any : T[P];
 };
 export declare type FillerResult = {
     continue: boolean;
@@ -146,9 +146,10 @@ declare global {
          *
          * @param {object} firstObject - The object that will be updated.
          * @param {object} secondObject - The object to use for the update of the firstObject.
+         * @param {function} [filter] - A function that help to choose which elements will be updated.
          * @returns {object} An updated copy of the first object.
          */
-        patch<T extends object>(firstObject: T, secondObject: DeepPartial<T>): T;
+        patch<T extends object>(firstObject: T, secondObject: DeepPartial<T>, filter?: (options: PatchFilterOptions) => boolean): T;
         /**
          * @since 1.1.0
          *
@@ -161,6 +162,7 @@ declare global {
          * @since 1.1.0
          *
          * Creates an object composed of the picked object properties.
+         *
          * @param {object} object - The source object
          * @param {string[]} paths - The property paths to pick
          * @returns {Pick<object, string[]>} A new object with the choosen fields.

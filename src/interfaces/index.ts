@@ -8,6 +8,11 @@ export interface RotateSelectorOptions<T> {
   array: T[];
 }
 
+export interface PatchFilterOptions {
+  key: string;
+  value: unknown;
+}
+
 export interface RotateOptions<T> {
   /**
    * Rotate n```steps```.

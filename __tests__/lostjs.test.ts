@@ -242,11 +242,29 @@ describe("Number tests", () => {
 });
 
 describe("Object test", () => {
-  test("patch tests", () => {
-    const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
+  test("patch", () => {
+    const object = {
+      a: true,
+      b: 1,
+      c: { a: 1, b: "2", c: [1, 2, 3] },
+      d: undefined,
+      e: null,
+    };
     const patched1 = Object.patch(object, { a: false });
     const patched2 = Object.patch(object, { b: 2 });
     const patched3 = Object.patch(object, { c: { c: [3, 2, 1] } });
+    const patched4 = Object.patch(object, { d: 33 });
+    const patched5 = Object.patch(
+      object,
+      {
+        a: false,
+        b: 55,
+        c: {},
+        d: "arroz",
+        e: null,
+      },
+      ({ key, value }) => value === undefined
+    );
 
     expect(typeof patched1.b).toBe("number");
     expect(patched1.b).toBe(1);
@@ -254,6 +272,8 @@ describe("Object test", () => {
       a: false,
       b: 1,
       c: { a: 1, b: "2", c: [1, 2, 3] },
+      d: undefined,
+      e: null,
     });
 
     expect(typeof patched2.b).toBe("number");
@@ -262,16 +282,36 @@ describe("Object test", () => {
       a: true,
       b: 2,
       c: { a: 1, b: "2", c: [1, 2, 3] },
+      d: undefined,
+      e: null,
     });
 
     expect(patched3).toMatchObject({
       a: true,
       b: 1,
       c: { c: [3, 2, 1] },
+      d: undefined,
+      e: null,
+    });
+
+    expect(patched4).toMatchObject({
+      a: true,
+      b: 1,
+      c: { a: 1, b: "2", c: [1, 2, 3] },
+      d: 33,
+      e: null,
+    });
+
+    expect(patched5).toMatchObject({
+      a: true,
+      b: 1,
+      c: { a: 1, b: "2", c: [1, 2, 3] },
+      d: "arroz",
+      e: null,
     });
   });
 
-  test("toArray test", () => {
+  test("toArray", () => {
     const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
     const arrayObject = Object.toArray(object);
 
@@ -281,7 +321,7 @@ describe("Object test", () => {
     expect(arrayObject["c"]).toMatchObject({ a: 1, b: "2", c: [1, 2, 3] });
   });
 
-  test("clone test", () => {
+  test("clone", () => {
     const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
     const copyObject = Object.clone(object);
 
@@ -294,5 +334,23 @@ describe("Object test", () => {
     expect(object.c === object.c).toBe(true);
     expect(copyObject.c === object.c).toBe(false);
     expect(copyObject.c.c === object.c.c).toBe(false);
+  });
+
+  test("pick", () => {
+    const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
+    const pick1 = Object.pick(object, ["a"]);
+    const pick2 = Object.pick(object, ["c"]);
+    const pick3 = Object.pick(object, ["c"], true);
+
+    expect(typeof pick1).toBe(typeof object);
+    expect(pick1.a).toBe(object.a);
+    /* @ts-ignore */
+    expect(pick1.b).toBe(undefined);
+
+    expect(pick2.c === object.c).toBe(true);
+    expect(pick2.c.a).toBe(object.c.a);
+
+    expect(pick3.c === object.c).toBe(false);
+    expect(pick3.c.a).toBe(object.c.a);
   });
 });

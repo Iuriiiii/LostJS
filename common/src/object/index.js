@@ -25,14 +25,7 @@ function clone(object) {
     return result;
 }
 exports.clone = clone;
-/**
- * Set the values of the secondObject to the firstObject.
- *
- * @param firstObject The object to patch.
- * @param secondObject The object with the data to use in as patch.
- * @returns The patched firstObject's clone.
- */
-function patch(firstObject, secondObject) {
+function patch(firstObject, secondObject, filter) {
     const entries = Object.entries(firstObject);
     const result = clone(firstObject);
     if (!secondObject) {
@@ -42,8 +35,11 @@ function patch(firstObject, secondObject) {
         if (secondObject[key] === undefined) {
             continue;
         }
+        if (filter && !filter({ key, value })) {
+            continue;
+        }
         if (typeof value === "object") {
-            result[key] = patch(result[key], secondObject[key]);
+            result[key] = patch(result[key], secondObject[key], filter);
         }
         else {
             result[key] = secondObject[key];
