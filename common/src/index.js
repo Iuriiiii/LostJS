@@ -17,7 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* @ts-nocheck */
 const array_1 = require("./array");
 const number_1 = require("./number");
-__exportStar(require("../types"), exports);
+const object_1 = require("./object");
+__exportStar(require("./types"), exports);
 if (!Array.prototype.circle)
     Array.prototype.circle = array_1.circleFrom;
 if (!Array.prototype.isEmpty)
@@ -46,8 +47,14 @@ if (!Number.prototype.times)
     Number.prototype.times = number_1.times;
 if (!Number.random)
     Number.random = number_1.staticRandom;
+if (!Object.patch)
+    Object.patch = object_1.patch;
+if (!Object.clone)
+    Object.clone = object_1.clone;
+if (!Object.toArray)
+    Object.toArray = object_1.toArray;
 // if (!Object.defaults)
 //     Object.prototype.defaults = defaults;
 // if (!Object.predetermines)
-//     Object.prototype.predetermines = predetermines; 
+//     Object.prototype.predetermines = predetermines;
 //# sourceMappingURL=index.js.map

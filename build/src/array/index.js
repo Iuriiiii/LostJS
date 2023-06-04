@@ -1,5 +1,6 @@
+import { SplitType } from "../enums";
 export function lastIndex() {
-    return this.length === 0 ? 0 : this.length - 1;
+    return this.length === 0 ? null : this.length - 1;
 }
 export function isEmpty() {
     return this.length === 0;
@@ -22,17 +23,9 @@ export function circleFrom() {
     first.prev = item.prev;
     return first;
 }
-;
 export function random() {
     return this[Math.floor(Math.random() * this.length)];
 }
-;
-/**
- * @deprecated
- * @param this
- * @param index
- * @returns The element in the position or undefinded if the array is empty.
- */
 export function at2(index) {
     return this.at(index % this.length);
 }
@@ -48,28 +41,47 @@ export function fillWith(filler) {
     } while (filleResult.continue);
     return this;
 }
-export function rotate(steps = 1, selector) {
+export function rotate(optionsOrSteps) {
+    const { steps = 1, selector } = typeof optionsOrSteps === "number"
+        ? { steps: optionsOrSteps }
+        : optionsOrSteps ?? {};
     if (steps === 0 || this.isEmpty())
         return [];
+    const res = [];
     const toRight = steps > 0 ? -1 : 1;
     const modificableIndexes = selector
-        ? this.reduce((accumulator, value, index, array) => selector(value, index, array) ? accumulator.concat(index) : accumulator, [])
-        : [].fillWith((index) => ({ continue: index < this.lastIndex(), value: index }));
-    const res = [];
+        ? this.reduce((accumulator, item, index, array) => selector({ item, index, array })
+            ? accumulator.concat(index)
+            : accumulator, [])
+        : [].fillWith((index) => ({
+            continue: index < this.lastIndex(),
+            value: index,
+        }));
     for (let i = 0, k = 0; i < this.length; i++)
         if (modificableIndexes.includes(i))
-            res.push(this.from(modificableIndexes.from(toRight ? (k++ + -steps) : k++ + steps)));
+            res.push(this.from(modificableIndexes.from(toRight ? k++ + -steps : k++ + steps)));
         else
             res.push(this[i]);
     return res;
 }
-export function split(steps, byDivision = false) {
+export function split(steps, type = SplitType.Parallelism) {
     if (steps < 0)
         return [];
-    else if (steps === 0 || this.isEmpty())
+    else if (steps === 0 || isEmpty.apply(this))
         return [this];
-    const numSections = byDivision ? Math.floor(this.length / steps) : steps;
     const res = [];
+    let numSections;
+    switch (type) {
+        case SplitType.Parallelism:
+            numSections = steps;
+            break;
+        case SplitType.ExclusiveDivision:
+            numSections = Math.floor(this.length / steps);
+            break;
+        case SplitType.InclusiveDivision:
+            numSections = Math.floor((this.length + 1) / steps);
+            break;
+    }
     for (let i = 0; i < this.length; i += numSections)
         res.push(this.slice(i, i + numSections));
     return res;
