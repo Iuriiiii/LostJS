@@ -189,7 +189,7 @@ declare global {
      * @since 1.1.0
      *
      * Creates an object composed of the picked object properties.
-     * 
+     *
      * @param {object} object - The source object
      * @param {string[]} paths - The property paths to pick
      * @returns {Pick<object, string[]>} A new object with the choosen fields.
