@@ -11,14 +11,14 @@ function isEmpty() {
 }
 exports.isEmpty = isEmpty;
 function circleFrom() {
-    if (this.isEmpty())
+    if (isEmpty.call(this))
         return null;
     /* @ts-ignore */
     const first = {};
     let item = first;
     for (let i = 0; i < this.length; i++) {
         item.isFirst = i === 0;
-        item.isLast = i === this.lastIndex();
+        item.isLast = i === lastIndex.call(this);
         item.index = i;
         item.value = this[i];
         /* @ts-ignore */
@@ -55,7 +55,7 @@ function rotate(optionsOrSteps) {
     const { steps = 1, selector } = typeof optionsOrSteps === "number"
         ? { steps: optionsOrSteps }
         : optionsOrSteps ?? {};
-    if (steps === 0 || this.isEmpty())
+    if (steps === 0 || isEmpty.call(this))
         return [];
     const res = [];
     const toRight = steps > 0 ? -1 : 1;
@@ -64,12 +64,12 @@ function rotate(optionsOrSteps) {
             ? accumulator.concat(index)
             : accumulator, [])
         : [].fillWith((index) => ({
-            continue: index < this.lastIndex(),
+            continue: index < lastIndex.call(this),
             value: index,
         }));
     for (let i = 0, k = 0; i < this.length; i++)
         if (modificableIndexes.includes(i))
-            res.push(this.from(modificableIndexes.from(toRight ? k++ + -steps : k++ + steps)));
+            res.push(from.call(this, from.call(modificableIndexes, toRight ? k++ + -steps : k++ + steps)));
         else
             res.push(this[i]);
     return res;

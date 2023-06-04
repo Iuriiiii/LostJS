@@ -11,7 +11,7 @@ export function isEmpty<T>(this: T[]): boolean {
 }
 
 export function circleFrom<T>(this: T[]): ICircleElement<T> | null {
-  if (this.isEmpty()) return null;
+  if (isEmpty.call(this)) return null;
 
   /* @ts-ignore */
   const first: ICircleElement<T> = {};
@@ -19,7 +19,7 @@ export function circleFrom<T>(this: T[]): ICircleElement<T> | null {
 
   for (let i = 0; i < this.length; i++) {
     item.isFirst = i === 0;
-    item.isLast = i === this.lastIndex();
+    item.isLast = i === lastIndex.call(this);
     item.index = i;
     item.value = this[i];
     /* @ts-ignore */
@@ -69,7 +69,7 @@ export function rotate<T>(
       ? { steps: optionsOrSteps }
       : optionsOrSteps ?? {};
 
-  if (steps === 0 || this.isEmpty()) return [];
+  if (steps === 0 || isEmpty.call(this)) return [];
 
   const res: T[] = [];
   const toRight = steps > 0 ? -1 : 1;
@@ -82,16 +82,20 @@ export function rotate<T>(
         []
       )
     : [].fillWith((index) => ({
-        continue: index < this.lastIndex()!,
+        continue: index < lastIndex.call(this)!,
         value: index,
       }));
 
   for (let i = 0, k = 0; i < this.length; i++)
     if (modificableIndexes.includes(i))
       res.push(
-        this.from(
-          modificableIndexes.from(toRight ? k++ + -steps : k++ + steps)!
-        )!
+        from.call(
+          this,
+          from.call(
+            modificableIndexes,
+            toRight ? k++ + -steps : k++ + steps
+          ) as number
+        ) as T
       );
     else res.push(this[i]);
 
