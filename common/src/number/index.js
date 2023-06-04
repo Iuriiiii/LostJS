@@ -19,8 +19,8 @@ function close(min, max) {
 }
 exports.close = close;
 function staticRandom(param) {
-    param.min = param.min || 0;
-    param.max = param.max || Number.MAX_SAFE_INTEGER;
+    param.min ||= 0;
+    param.max ||= Number.MAX_SAFE_INTEGER;
     return Math.random() * (param.max - 1) + param.min;
 }
 exports.staticRandom = staticRandom;
@@ -28,7 +28,7 @@ function times(cb, ...args) {
     if (this <= 0)
         return;
     for (let i = 0; i < this; i++)
-        cb(...args.map((arg) => arg === '$' ? i : arg));
+        cb(...args.map((arg) => (arg === "$" ? i : arg)));
 }
 exports.times = times;
 //# sourceMappingURL=index.js.map

@@ -185,16 +185,28 @@ describe("Array tests", () => {
 
 describe("Number tests", () => {
   test("Number.random should be ok", () => {
+    let isOne = false;
+    let isTwo = false;
     for (let i = 0; i < 1000; i++) {
-      expect(Number.random({ min: 1, max: 2 })).toBeGreaterThanOrEqual(1);
-      expect(Number.random({ min: 1, max: 2 })).toBeLessThanOrEqual(2);
-      expect(
-        Math.floor(Number.random({ min: 1, max: 2 }))
-      ).toBeGreaterThanOrEqual(1);
-      expect(Math.floor(Number.random({ min: 1, max: 2 }))).toBeLessThanOrEqual(
-        2
-      );
+      const n = Number.random({ min: 1, max: 2 });
+      const nRound = Math.round(n);
+
+      if (nRound === 1) {
+        isOne = true;
+      }
+
+      if (nRound === 2) {
+        isTwo = true;
+      }
+
+      expect(n).toBeGreaterThanOrEqual(1);
+      expect(n).toBeLessThanOrEqual(2);
+      expect(nRound).toBeGreaterThanOrEqual(1);
+      expect(nRound).toBeLessThanOrEqual(2);
     }
+
+    expect(isOne).toBe(true);
+    expect(isTwo).toBe(true);
   });
 
   test("isBetween should return true", () => {

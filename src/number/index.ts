@@ -10,13 +10,12 @@ export function isBetween(this: Number, min: number, max: number): boolean {
 export function close(this: Number, min: number, max: number): Number {
   if (this < min) return min;
   else if (this > max) return max;
-
   return this;
 }
 
 export function staticRandom(param: { min?: number; max?: number }): number {
-  param.min = param.min || 0;
-  param.max = param.max || Number.MAX_SAFE_INTEGER;
+  param.min ||= 0;
+  param.max ||= Number.MAX_SAFE_INTEGER;
 
   return Math.random() * (param.max - 1) + param.min;
 }
