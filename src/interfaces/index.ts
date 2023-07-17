@@ -32,11 +32,16 @@ export interface RotateOptions<T> {
   selector?: (element: RotateSelectorOptions<T>) => boolean;
 }
 
-export interface ICircleElement<T> {
+export interface CircleElement<T> {
   isLast: boolean;
   isFirst: boolean;
   index: number;
-  prev: ICircleElement<T>;
-  next: ICircleElement<T>;
+  prev: CircleElement<T>;
+  next: CircleElement<T>;
   value: T;
 }
+
+// export interface SelectResult<T> {
+//   true: T[];
+//   false: T[];
+// }

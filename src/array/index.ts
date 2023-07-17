@@ -1,6 +1,6 @@
-import { FillerResult } from "../types";
+import { FillerResult, DiscriminateResult } from "../types";
 import { SplitType } from "../enums";
-import { ICircleElement, RotateOptions } from "../interfaces";
+import { CircleElement, RotateOptions } from "../interfaces";
 
 export function lastIndex<T>(this: T[]) {
   return this.length === 0 ? null : this.length - 1;
@@ -10,11 +10,11 @@ export function isEmpty<T>(this: T[]): boolean {
   return this.length === 0;
 }
 
-export function circleFrom<T>(this: T[]): ICircleElement<T> | null {
+export function circleFrom<T>(this: T[]): CircleElement<T> | null {
   if (isEmpty.call(this)) return null;
 
   /* @ts-ignore */
-  const first: ICircleElement<T> = {};
+  const first: CircleElement<T> = {};
   let item = first;
 
   for (let i = 0; i < this.length; i++) {
@@ -75,16 +75,16 @@ export function rotate<T>(
   const toRight = steps > 0 ? -1 : 1;
   const modificableIndexes: Array<number> = selector
     ? this.reduce<number[]>(
-        (accumulator, item, index, array) =>
-          selector({ item, index, array })
-            ? accumulator.concat(index)
-            : accumulator,
-        []
-      )
+      (accumulator, item, index, array) =>
+        selector({ item, index, array })
+          ? accumulator.concat(index)
+          : accumulator,
+      []
+    )
     : [].fillWith((index) => ({
-        continue: index < lastIndex.call(this)!,
-        value: index,
-      }));
+      continue: index < lastIndex.call(this)!,
+      value: index,
+    }));
 
   for (let i = 0, k = 0; i < this.length; i++)
     if (modificableIndexes.includes(i))
@@ -129,4 +129,17 @@ export function split<T>(
     res.push(this.slice(i, i + numSections));
 
   return res;
+}
+
+export function discriminate<T>(this: T[], filter: (item: T, index: number, array: T[]) => boolean): DiscriminateResult<T> {
+  const result: DiscriminateResult<T> = {
+    true: [],
+    false: [],
+  };
+
+  for (let i = 0; i < this.length; i++)
+    /* @ts-ignore */
+    result[!!filter(this[i], i, this)].push(this[i]);
+
+  return result;
 }

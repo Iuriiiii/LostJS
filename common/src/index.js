@@ -35,6 +35,8 @@ if (!Array.prototype.fillWith)
     Array.prototype.fillWith = array_1.fillWith;
 if (!Array.prototype.split)
     Array.prototype.split = array_1.split;
+if (!Array.prototype.discriminate)
+    Array.prototype.discriminate = array_1.discriminate;
 if (!Number.prototype.close)
     Number.prototype.close = number_1.close;
 if (!Number.prototype.hasDecimals)

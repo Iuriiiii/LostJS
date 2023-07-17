@@ -8,6 +8,7 @@ import {
   random,
   rotate,
   split,
+  discriminate
 } from "./array";
 import { close, hasDecimals, isBetween, staticRandom, times } from "./number";
 import { clone, patch, pick, toArray } from "./object";
@@ -21,6 +22,7 @@ if (!Array.prototype.from) Array.prototype.from = from;
 if (!Array.prototype.rotate) Array.prototype.rotate = rotate;
 if (!Array.prototype.fillWith) Array.prototype.fillWith = fillWith;
 if (!Array.prototype.split) Array.prototype.split = split;
+if (!Array.prototype.discriminate) Array.prototype.discriminate = discriminate;
 if (!Number.prototype.close) Number.prototype.close = close;
 if (!Number.prototype.hasDecimals) Number.prototype.hasDecimals = hasDecimals;
 if (!Number.prototype.isBetween) Number.prototype.isBetween = isBetween;

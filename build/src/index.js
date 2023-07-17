@@ -1,4 +1,4 @@
-import { at2, circleFrom, fillWith, from, isEmpty, lastIndex, random, rotate, split, } from "./array";
+import { at2, circleFrom, fillWith, from, isEmpty, lastIndex, random, rotate, split, discriminate } from "./array";
 import { close, hasDecimals, isBetween, staticRandom, times } from "./number";
 import { clone, patch, pick, toArray } from "./object";
 if (!Array.prototype.circle)
@@ -19,6 +19,8 @@ if (!Array.prototype.fillWith)
     Array.prototype.fillWith = fillWith;
 if (!Array.prototype.split)
     Array.prototype.split = split;
+if (!Array.prototype.discriminate)
+    Array.prototype.discriminate = discriminate;
 if (!Number.prototype.close)
     Number.prototype.close = close;
 if (!Number.prototype.hasDecimals)

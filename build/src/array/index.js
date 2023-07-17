@@ -86,4 +86,14 @@ export function split(steps, type = SplitType.Parallelism) {
         res.push(this.slice(i, i + numSections));
     return res;
 }
+export function discriminate(filter) {
+    const result = {
+        true: [],
+        false: [],
+    };
+    for (let i = 0; i < this.length; i++)
+        /* @ts-ignore */
+        result[!!filter(this[i], i, this)].push(this[i]);
+    return result;
+}
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.split = exports.rotate = exports.fillWith = exports.from = exports.at2 = exports.random = exports.circleFrom = exports.isEmpty = exports.lastIndex = void 0;
+exports.discriminate = exports.split = exports.rotate = exports.fillWith = exports.from = exports.at2 = exports.random = exports.circleFrom = exports.isEmpty = exports.lastIndex = void 0;
 const enums_1 = require("../enums");
 function lastIndex() {
     return this.length === 0 ? null : this.length - 1;
@@ -98,4 +98,15 @@ function split(steps, type = enums_1.SplitType.Parallelism) {
     return res;
 }
 exports.split = split;
+function discriminate(filter) {
+    const result = {
+        true: [],
+        false: [],
+    };
+    for (let i = 0; i < this.length; i++)
+        /* @ts-ignore */
+        result[!!filter(this[i], i, this)].push(this[i]);
+    return result;
+}
+exports.discriminate = discriminate;
 //# sourceMappingURL=index.js.map

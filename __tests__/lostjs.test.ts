@@ -103,10 +103,6 @@ describe("Array tests", () => {
   });
 
   test("rotate should work correctly", () => {
-    console.log(
-      [].fillWith((index, array) => ({ continue: index < 49, value: index }))
-    );
-
     const array = [1, 2, 3];
     const array2 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
     const array3 = ["a", 0, "c", 0, "e", 0, "g", 0, "i", 0];
@@ -180,6 +176,22 @@ describe("Array tests", () => {
     expect(array3.split(2, SplitType.InclusiveDivision)).toMatchObject(
       compare7
     );
+  });
+
+  test("discriminate should work correctly", () => {
+    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const discrimination = array.discriminate((item) => item <= 5);
+
+    expect(discrimination.true).toMatchObject(array.filter(item => item <= 5));
+    expect(discrimination.false).toMatchObject(array.filter(item => item > 5));
+
+    expect(discrimination['true']).toMatchObject(array.filter(item => item <= 5));
+    expect(discrimination['false']).toMatchObject(array.filter(item => item > 5));
+
+    /* @ts-ignore */
+    expect(discrimination[true]).toMatchObject(array.filter(item => item <= 5));
+    /* @ts-ignore */
+    expect(discrimination[false]).toMatchObject(array.filter(item => item > 5));
   });
 });
 
