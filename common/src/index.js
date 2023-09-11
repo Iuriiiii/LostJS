@@ -62,4 +62,5 @@ if (!String.prototype.patch)
     String.prototype.patch = string_1.patch;
 __exportStar(require("./types"), exports);
 __exportStar(require("./interfaces"), exports);
+__exportStar(require("./enums"), exports);
 //# sourceMappingURL=index.js.map

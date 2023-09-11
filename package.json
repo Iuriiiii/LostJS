@@ -1,6 +1,6 @@
 {
   "name": "lostjs",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "description": "An usefull library to improve your projects",
   "main": "./build/index.js",
   "scripts": {
