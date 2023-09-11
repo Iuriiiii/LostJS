@@ -185,7 +185,7 @@ declare global {
          */
         pick<T extends object, K extends keyof T>(object: T, paths: K[], deepClone?: boolean): Pick<T, K>;
         /**
-         * @since 1.1.0
+         * @since 1.1.18
          *
          * Search for a value or field in an object.
          *
