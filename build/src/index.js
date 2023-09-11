@@ -44,7 +44,4 @@ if (!Object.search)
     Object.search = search;
 if (!String.prototype.patch)
     String.prototype.patch = stringPatch;
-export * from "./types";
-export * from "./interfaces";
-export * from "./enums";
 //# sourceMappingURL=index.js.map

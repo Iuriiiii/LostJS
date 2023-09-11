@@ -35,7 +35,3 @@ if (!Object.toArray) Object.toArray = toArray;
 if (!Object.pick) Object.pick = pick;
 if (!Object.search) Object.search = search;
 if (!String.prototype.patch) String.prototype.patch = stringPatch;
-
-export * from "./types";
-export * from "./interfaces";
-export * from "./enums";
