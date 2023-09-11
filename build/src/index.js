@@ -1,6 +1,6 @@
 import { at2, circleFrom, fillWith, from, isEmpty, lastIndex, random, rotate, split, discriminate, } from "./array";
 import { close, hasDecimals, isBetween, staticRandom, times } from "./number";
-import { clone, patch, pick, toArray } from "./object";
+import { clone, patch, pick, search, toArray } from "./object";
 import { patch as stringPatch } from "./string";
 if (!Array.prototype.circle)
     Array.prototype.circle = circleFrom;
@@ -40,6 +40,8 @@ if (!Object.toArray)
     Object.toArray = toArray;
 if (!Object.pick)
     Object.pick = pick;
+if (!Object.search)
+    Object.search = search;
 if (!String.prototype.patch)
     String.prototype.patch = stringPatch;
 export * from "./types";

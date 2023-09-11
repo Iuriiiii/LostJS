@@ -36,3 +36,13 @@ export interface CircleElement<T> {
     next: CircleElement<T>;
     value: T;
 }
+export interface ObjectElementReference {
+    reference: object;
+    name: string;
+}
+export interface ObjectSearchResult {
+    path: string[];
+    reference: unknown;
+    field: string;
+    value: string;
+}

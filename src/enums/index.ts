@@ -3,3 +3,8 @@ export enum SplitType {
   ExclusiveDivision,
   InclusiveDivision,
 }
+
+export enum ObjectSearch {
+  Value,
+  Field,
+}

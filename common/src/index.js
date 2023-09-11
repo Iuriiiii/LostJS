@@ -56,6 +56,8 @@ if (!Object.toArray)
     Object.toArray = object_1.toArray;
 if (!Object.pick)
     Object.pick = object_1.pick;
+if (!Object.search)
+    Object.search = object_1.search;
 if (!String.prototype.patch)
     String.prototype.patch = string_1.patch;
 __exportStar(require("./types"), exports);

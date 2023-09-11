@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pick = exports.patch = exports.clone = exports.toArray = void 0;
+exports.search = exports.pick = exports.patch = exports.clone = exports.toArray = void 0;
+const enums_1 = require("../enums");
+const utils_1 = require("../utils");
 function toArray(object) {
     const entries = Object.entries(object);
     return entries.reduce((accumulator, [key, value]) => {
@@ -62,4 +64,44 @@ function pick(object, paths, deepClone = false) {
     }, {});
 }
 exports.pick = pick;
+function search(haystack, needle, method = enums_1.ObjectSearch.Value) {
+    const stack = [{ reference: haystack, name: "$" }];
+    const visited = new Set();
+    const filter = typeof needle === "string" ? (0, utils_1.extractRegex)(needle) : needle;
+    if (!filter) {
+        return null;
+    }
+    while (stack.length) {
+        const { reference, name } = stack.pop();
+        if (visited.has(reference)) {
+            continue;
+        }
+        visited.add(reference);
+        for (const [key, value] of Object.entries(reference)) {
+            const lens = method === enums_1.ObjectSearch.Field ? key : value;
+            const typeOfLens = typeof lens;
+            const typeOfNeedle = typeof needle;
+            const typeOfValue = typeof value;
+            if ([0, null, undefined].includes(lens) ||
+                typeOfLens === "function" ||
+                (typeOfLens !== typeOfNeedle && typeOfValue !== "object")) {
+                continue;
+            }
+            else if ((typeOfLens === "string" && filter.test(lens)) ||
+                (typeOfLens === "number" && lens === needle)) {
+                return {
+                    path: name.split("."),
+                    reference,
+                    field: key,
+                    value: method === enums_1.ObjectSearch.Field ? value : lens,
+                };
+            }
+            else if (value && typeOfValue === "object") {
+                stack.push({ reference: value, name: name + "." + key });
+            }
+        }
+    }
+    return null;
+}
+exports.search = search;
 //# sourceMappingURL=index.js.map

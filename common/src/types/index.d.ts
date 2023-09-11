@@ -1,5 +1,5 @@
-import { SplitType } from "../enums";
-import { CircleElement, PatchFilterOptions, RotateOptions } from "../interfaces";
+import { ObjectSearch, SplitType } from "../enums";
+import { CircleElement, ObjectSearchResult, PatchFilterOptions, RotateOptions } from "../interfaces";
 export declare type Indexable<T extends object> = {
     [K in keyof T]: T[K];
 };
@@ -184,6 +184,36 @@ declare global {
          * @see https://gist.github.com/bisubus/2da8af7e801ffd813fab7ac221aa7afc?permalink_comment_id=2366292#gistcomment-2366292
          */
         pick<T extends object, K extends keyof T>(object: T, paths: K[], deepClone?: boolean): Pick<T, K>;
+        /**
+         * @since 1.1.0
+         *
+         * Search for a value or field in an object.
+         *
+         * @param {object} haystack - The object to search in
+         * @param {string | number} needle - The value or field to search, if the needle is an string, a regex will be used
+         * @returns {ObjectSearchResult | null} An object with the search result. ```null``` if not found
+         * @example
+         * const object = {
+         *   name: "John",
+         *   surname: "Doe",
+         *   age: 30,
+         *   address: {
+         *     street: "Main Street",
+         *     number: 1,
+         *     city: "New York"
+         *   }
+         * };
+         *
+         * Object.search(object, "John");
+         * // Returns {path: ["$", "name"], reference: object, field: "name", value: "John"}
+         *
+         * Object.search(object, "/new york/i");
+         * // Returns {path: ["$", "address", "city"], reference: object.address, field: "city", value: "New York"}
+         *
+         * Object.search(object, "number", ObjectSearch.Field);
+         * // Returns {path: ["$", "address", "number"], reference: object.address, field: "number", value: 1}
+         */
+        search(haystack: object, needle: string | number, method?: ObjectSearch): ObjectSearchResult | null;
     }
     interface NumberConstructor {
         random(param: {

@@ -45,3 +45,15 @@ export interface CircleElement<T> {
 //   true: T[];
 //   false: T[];
 // }
+
+export interface ObjectElementReference {
+  reference: object;
+  name: string;
+}
+
+export interface ObjectSearchResult {
+  path: string[];
+  reference: unknown;
+  field: string;
+  value: string;
+}

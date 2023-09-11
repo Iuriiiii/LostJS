@@ -1,5 +1,5 @@
 import "../common";
-import { SplitType } from "../common/src/enums";
+import { ObjectSearch, SplitType } from "../common/src/enums";
 
 describe("Array tests", () => {
   test("isEmpty should be true", () => {
@@ -388,6 +388,43 @@ describe("Object test", () => {
 
     expect(pick3.c === object.c).toBe(false);
     expect(pick3.c.a).toBe(object.c.a);
+  });
+
+  test("search", () => {
+    const object = { a: true, b: 1, c: { a: 1, b: "2", c: [1, 2, 3] } };
+
+    expect(Object.search(object, "a")).toBe(null);
+    expect(Object.search(object, "a", ObjectSearch.Field)).toMatchObject({
+      path: ["$"],
+      reference: object,
+      field: "a",
+      value: true,
+    });
+
+    const object2 = {
+      name: "John",
+      surname: "Doe",
+      age: 30,
+      address: {
+        street: "Main Street",
+        number: 1,
+        city: "New York",
+      },
+    };
+
+    expect(Object.search(object2, "John")).toMatchObject({
+      path: ["$"],
+      reference: object2,
+      field: "name",
+      value: "John",
+    });
+
+    expect(Object.search(object2, "/john/i")).toMatchObject({
+      path: ["$"],
+      reference: object2,
+      field: "name",
+      value: "John",
+    });
   });
 });
 

@@ -1,5 +1,12 @@
-import { PatchFilterOptions, Reference } from "../interfaces";
+import { ObjectSearch } from "../enums";
+import {
+  ObjectElementReference,
+  ObjectSearchResult,
+  PatchFilterOptions,
+  Reference,
+} from "../interfaces";
 import { DeepPartial, Indexable } from "../types";
+import { extractRegex } from "../utils";
 
 export function toArray<T extends object>(object: T): Indexable<T> {
   const entries = Object.entries(object);
@@ -80,4 +87,57 @@ export function pick<T extends object, K extends keyof T>(
 
     return accumulator;
   }, {}) as Pick<T, K>;
+}
+
+export function search(
+  haystack: object,
+  needle: string | number,
+  method: ObjectSearch = ObjectSearch.Value
+): ObjectSearchResult | null {
+  const stack: ObjectElementReference[] = [{ reference: haystack, name: "$" }];
+  const visited: Set<object> = new Set<object>();
+  const filter = typeof needle === "string" ? extractRegex(needle) : needle;
+
+  if (!filter) {
+    return null;
+  }
+
+  while (stack.length) {
+    const { reference, name } = stack.pop()!;
+
+    if (visited.has(reference)) {
+      continue;
+    }
+
+    visited.add(reference);
+
+    for (const [key, value] of Object.entries(reference)) {
+      const lens: unknown = method === ObjectSearch.Field ? key : value;
+      const typeOfLens: string = typeof lens;
+      const typeOfNeedle: string = typeof needle;
+      const typeOfValue: string = typeof value;
+
+      if (
+        [0, null, undefined].includes(lens as number | null | undefined) ||
+        typeOfLens === "function" ||
+        (typeOfLens !== typeOfNeedle && typeOfValue !== "object")
+      ) {
+        continue;
+      } else if (
+        (typeOfLens === "string" && (filter as RegExp).test(lens as string)) ||
+        (typeOfLens === "number" && lens === needle)
+      ) {
+        return {
+          path: name.split("."),
+          reference,
+          field: key,
+          value: method === ObjectSearch.Field ? value : (lens as string),
+        };
+      } else if (value && typeOfValue === "object") {
+        stack.push({ reference: value, name: name + "." + key });
+      }
+    }
+  }
+
+  return null;
 }
