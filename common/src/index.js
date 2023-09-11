@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const array_1 = require("./array");
 const number_1 = require("./number");
 const object_1 = require("./object");
+const string_1 = require("./string");
 if (!Array.prototype.circle)
     Array.prototype.circle = array_1.circleFrom;
 if (!Array.prototype.isEmpty)
@@ -55,6 +56,8 @@ if (!Object.toArray)
     Object.toArray = object_1.toArray;
 if (!Object.pick)
     Object.pick = object_1.pick;
+if (!String.prototype.patch)
+    String.prototype.patch = string_1.patch;
 __exportStar(require("./types"), exports);
 __exportStar(require("./interfaces"), exports);
 //# sourceMappingURL=index.js.map

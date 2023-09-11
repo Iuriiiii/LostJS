@@ -182,16 +182,28 @@ describe("Array tests", () => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const discrimination = array.discriminate((item) => item <= 5);
 
-    expect(discrimination.true).toMatchObject(array.filter(item => item <= 5));
-    expect(discrimination.false).toMatchObject(array.filter(item => item > 5));
+    expect(discrimination.true).toMatchObject(
+      array.filter((item) => item <= 5)
+    );
+    expect(discrimination.false).toMatchObject(
+      array.filter((item) => item > 5)
+    );
 
-    expect(discrimination['true']).toMatchObject(array.filter(item => item <= 5));
-    expect(discrimination['false']).toMatchObject(array.filter(item => item > 5));
+    expect(discrimination["true"]).toMatchObject(
+      array.filter((item) => item <= 5)
+    );
+    expect(discrimination["false"]).toMatchObject(
+      array.filter((item) => item > 5)
+    );
 
     /* @ts-ignore */
-    expect(discrimination[true]).toMatchObject(array.filter(item => item <= 5));
+    expect(discrimination[true]).toMatchObject(
+      array.filter((item) => item <= 5)
+    );
     /* @ts-ignore */
-    expect(discrimination[false]).toMatchObject(array.filter(item => item > 5));
+    expect(discrimination[false]).toMatchObject(
+      array.filter((item) => item > 5)
+    );
   });
 });
 
@@ -376,5 +388,48 @@ describe("Object test", () => {
 
     expect(pick3.c === object.c).toBe(false);
     expect(pick3.c.a).toBe(object.c.a);
+  });
+});
+
+describe("String test", () => {
+  test("patch", () => {
+    const object = {
+      NAME_HERE: "John Doe",
+      YEARS_HERE: 18,
+    };
+    const textToPatch =
+      "Hello, my name is NAME_HERE and I'm YEARS_HERE years old.";
+
+    expect(textToPatch.patch(object)).toBe(
+      textToPatch
+        .replace("NAME_HERE", object.NAME_HERE)
+        .replace("YEARS_HERE", `${object.YEARS_HERE}`)
+    );
+
+    const secondObject = {
+      "/NAME_HERE/g": "John Doe",
+      "/YEARS_HERE/g": 18,
+    };
+    const secondTextToPatch =
+      "Hello, my name is NAME_HERE and I'm YEARS_HERE. My name is NAME_HERE and I'm YEARS_HERE.";
+
+    expect(secondTextToPatch.patch(secondObject)).toBe(
+      secondTextToPatch
+        .replace(/NAME_HERE/g, secondObject["/NAME_HERE/g"])
+        .replace(/YEARS_HERE/g, `${secondObject["/YEARS_HERE/g"]}`)
+    );
+
+    const thirdObject = {
+      "/NAME_HERE/gi": "John Doe",
+      "/YEARS_HERE/gi": 18,
+    };
+    const thirdTextToPatch =
+      "Hello, my name is NAME_hERE and I'm YEARS_HERE. My name is NAME_HERE and I'm YEArS_HERE.";
+
+    expect(thirdTextToPatch.patch(thirdObject)).toBe(
+      thirdTextToPatch
+        .replace(/NAME_HERE/gi, thirdObject["/NAME_HERE/gi"])
+        .replace(/YEARS_HERE/gi, `${thirdObject["/YEARS_HERE/gi"]}`)
+    );
   });
 });

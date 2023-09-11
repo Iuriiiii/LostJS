@@ -15,16 +15,14 @@ export type Prettify<T> = {
 
 export declare type DeepPartial<T extends object> = {
   [P in keyof T]?: T[P] extends object
-  ? DeepPartial<T[P]>
-  : T[P] extends undefined | null
-  ? any
-  : T[P];
+    ? DeepPartial<T[P]>
+    : T[P] extends undefined | null
+    ? any
+    : T[P];
 };
 
-export type DiscriminateResult<T> = { [key in 'true' | 'false']: T[] };
-
+export type DiscriminateResult<T> = { [key in "true" | "false"]: T[] };
 export type FillerResult = { continue: boolean; push?: boolean; value: any };
-
 export type TDefaultObject<T, K> = Partial<T> & K;
 
 declare global {
@@ -143,17 +141,20 @@ declare global {
     split<T>(this: T[], steps: number, type?: SplitType): T[][];
 
     /**
-     * 
+     *
      * @param {T[]} this - The array which elements will be discriminated.
      * @param {function} filter - Function that will filter the items.
      * @returns {DiscriminateResult<T>} An object with "true" and "false" members that are filled with the array items that passed the filter or not.
      * @example
      * const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-     * 
+     *
      * array.discriminate(item => item <= 5);
      * // Returns {true: [1, 2, 3, 4, 5], false: [6, 7, 8, 9]}
      */
-    discriminate<T>(this: T[], filter: (item: T, index: number, array: T[]) => boolean): DiscriminateResult<T>;
+    discriminate<T>(
+      this: T[],
+      filter: (item: T, index: number, array: T[]) => boolean
+    ): DiscriminateResult<T>;
   }
 
   interface Number {
@@ -219,5 +220,9 @@ declare global {
 
   interface NumberConstructor {
     random(param: { min?: number; max?: number }): number;
+  }
+
+  interface String {
+    patch(this: String, object: object): String;
   }
 }

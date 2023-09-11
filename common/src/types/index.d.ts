@@ -10,7 +10,7 @@ export declare type DeepPartial<T extends object> = {
     [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P] extends undefined | null ? any : T[P];
 };
 export declare type DiscriminateResult<T> = {
-    [key in 'true' | 'false']: T[];
+    [key in "true" | "false"]: T[];
 };
 export declare type FillerResult = {
     continue: boolean;
@@ -190,5 +190,8 @@ declare global {
             min?: number;
             max?: number;
         }): number;
+    }
+    interface String {
+        patch(this: String, object: object): String;
     }
 }

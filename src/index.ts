@@ -8,10 +8,11 @@ import {
   random,
   rotate,
   split,
-  discriminate
+  discriminate,
 } from "./array";
 import { close, hasDecimals, isBetween, staticRandom, times } from "./number";
 import { clone, patch, pick, toArray } from "./object";
+import { patch as stringPatch } from "./string";
 
 if (!Array.prototype.circle) Array.prototype.circle = circleFrom;
 if (!Array.prototype.isEmpty) Array.prototype.isEmpty = isEmpty;
@@ -32,6 +33,7 @@ if (!Object.patch) Object.patch = patch;
 if (!Object.clone) Object.clone = clone;
 if (!Object.toArray) Object.toArray = toArray;
 if (!Object.pick) Object.pick = pick;
+if (!String.prototype.patch) String.prototype.patch = stringPatch;
 
 export * from "./types";
 export * from "./interfaces";
