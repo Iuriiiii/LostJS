@@ -69,7 +69,7 @@ export function rotate<T>(
       ? { steps: optionsOrSteps }
       : optionsOrSteps ?? {};
 
-  if (steps === 0 || isEmpty.call(this)) return [];
+  if (steps === 0 || isEmpty.call(this)) return this;
 
   const res: T[] = [];
   const toRight = steps > 0 ? -1 : 1;

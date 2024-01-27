@@ -3,6 +3,7 @@ import { extractRegex } from "../utils";
 export function toArray(object) {
     const entries = Object.entries(object);
     return entries.reduce((accumulator, [key, value]) => {
+        // @ts-ignore
         accumulator[key] = value;
         return accumulator;
     }, []);
@@ -14,6 +15,7 @@ export function clone(object) {
     const result = { ...object };
     for (const [key, value] of Object.entries(object)) {
         if (typeof value === "object" && value !== null) {
+            // @ts-ignore
             result[key] = clone(value);
         }
     }
@@ -29,6 +31,7 @@ export function patch(firstObject, secondObject, filter) {
         return firstObject;
     }
     for (const [key, value] of entries) {
+        // @ts-ignore
         if (secondObject[key] === undefined) {
             continue;
         }
@@ -36,9 +39,11 @@ export function patch(firstObject, secondObject, filter) {
             continue;
         }
         if (typeof value === "object") {
+            // @ts-ignore
             result[key] = patch(result[key], secondObject[key], filter);
         }
         else {
+            // @ts-ignore
             result[key] = secondObject[key];
         }
     }

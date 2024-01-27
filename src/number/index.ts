@@ -1,13 +1,13 @@
-export function hasDecimals(this: Number): boolean {
+export function hasDecimals(this: number): boolean {
   /* @ts-ignore */
   return this % 1 > 0;
 }
 
-export function isBetween(this: Number, min: number, max: number): boolean {
+export function isBetween(this: number, min: number, max: number): boolean {
   return this >= min && this <= max;
 }
 
-export function close(this: Number, min: number, max: number): Number {
+export function close(this: number, min: number, max: number): Number {
   if (this < min) return min;
   else if (this > max) return max;
   return this;
@@ -21,7 +21,7 @@ export function staticRandom(param: { min?: number; max?: number }): number {
 }
 
 export function times(
-  this: Number,
+  this: number,
   cb: (...args: any) => void,
   ...args: any
 ): void {

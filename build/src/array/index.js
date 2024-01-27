@@ -46,7 +46,7 @@ export function rotate(optionsOrSteps) {
         ? { steps: optionsOrSteps }
         : optionsOrSteps ?? {};
     if (steps === 0 || isEmpty.call(this))
-        return [];
+        return this;
     const res = [];
     const toRight = steps > 0 ? -1 : 1;
     const modificableIndexes = selector

@@ -12,6 +12,7 @@ export function toArray<T extends object>(object: T): Indexable<T> {
   const entries = Object.entries(object);
 
   return entries.reduce((accumulator, [key, value]) => {
+    // @ts-ignore
     accumulator[key] = value as any;
     return accumulator;
   }, []) as unknown as Indexable<T>;
@@ -26,6 +27,7 @@ export function clone<T extends object>(object: T): T {
 
   for (const [key, value] of Object.entries(object)) {
     if (typeof value === "object" && value !== null) {
+      // @ts-ignore
       result[key] = clone(value);
     }
   }
@@ -50,6 +52,7 @@ export function patch<T extends object>(
   }
 
   for (const [key, value] of entries) {
+    // @ts-ignore
     if (secondObject[key] === undefined) {
       continue;
     }
@@ -59,8 +62,10 @@ export function patch<T extends object>(
     }
 
     if (typeof value === "object") {
+      // @ts-ignore
       result[key] = patch(result[key], secondObject[key]!, filter);
     } else {
+      // @ts-ignore
       result[key] = secondObject[key];
     }
   }
